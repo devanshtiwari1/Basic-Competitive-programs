@@ -1,59 +1,47 @@
-package Datastructure;
-import java.util.*; 
+package MediumLevel;
+
+import java.util.Scanner;
+import java.util.*;
 class P 
-{ 
-// fucntion to return the minimal number of moves 
-static int minimalSteps(String s, int n) 
-{ 
-
-	int []dp = new int[n]; 
-	
-	// initializing dp[i] to INT_MAX 
-	for (int i = 0; i < n; i++) 
-		dp[i] = Integer.MAX_VALUE; 
-
-	// initialize both strings to null 
-	StringBuilder s1 = new StringBuilder();
-	String s2 = "";
-
-	// base case
-	dp[0] = 1;
-
-	s1.append(s.charAt(0));
-
-	for (int i = 1; i < n; i++)
-	{
-	s1.append(s.charAt(i));
-
-	// check if it can be appended
-	s2 = s.substring(i + 1);
-
-	// addition of character takes one step
-	dp[i] = Math.min(dp[i], dp[i - 1] + 1);
-
-	// appending takes 1 step, and we directly
-	// reach index i*2+1 after appending
-	// so the number of steps is stord in i*2+1
-	if (s1.toString().equals(s2)) {
-	System.out.println("yolo");
-	dp[i * 2 + 1] = Math.min(dp[i] + 1,
-	dp[i * 2 + 1]);
+{
+	    public static void main(String[] args)
+	    {
+	        Scanner sc=new Scanner(System.in);
+	        int n1=sc.nextInt();
+	        int n2=sc.nextInt();
+	         String zero="000000";
+	         
+	        String hh="23";
+	        String mm="59";
+	        String ss="59";
+	       
+	       String Start=n1+zero;
+	       String End=n1+hh+mm+ss;
+	       int end=Integer.parseInt(End);
+	       int start=Integer.parseInt(Start);
+	       System.out.println(Start); 
+	       System.out.println(End);
+	       int count=0;
+	       
+	       for(int i=start;i<=end;i++)
+	       {
+	           String AA=String.valueOf(i);
+	             
+	                 char ch[]=AA.toCharArray();  
+	                  String rev="";
+	                 for(int j=ch.length-1;j>=0;j--)
+	                 {  
+	                rev+=ch[j];  
+	                }
+	                
+	                if(rev.equals(AA))
+	                {
+	                    count++;
+	                }
+	              rev="";  
+	       }
+	       int value= count*(n2-n1+1);
+	       System.out.println(value);
+	       
+	    }
 	}
-	}
-	return dp[n - 1];
-}
-
-
-
-// Driver Code 
-public static void main(String args[]) 
-{ 
-
-	String s = "abcabca"; 
-	int n = s.length(); 
-
-	// fucntion call to return minimal number of moves 
-	System.out.println(minimalSteps(s, n)/2); 
-} 
-} 
-
